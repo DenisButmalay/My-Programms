@@ -1,1 +1,116 @@
+import UIKit
+enum engine {
+    case start, stop
+}
 
+enum windows {
+    case open, close
+}
+
+enum trunkState {
+    case full, empty
+}
+
+struct car {
+    let brand: String
+    let horsepower:Int
+    var color:String
+    let transmission: String
+    let year: Int
+    mutating func changeColor(c:String) {
+        switch c {
+        case "white":
+            self.color = "white"
+        case "black":
+            self.color = "black"
+        case "red":
+            self.color = "red"
+        case "blue":
+            self.color = "blue"
+        default:
+            print("Input error.")
+        }
+    }
+    var trunkVolume : Double {
+        willSet {
+            if (trunkState == .empty) && (trunkVolume > 0) && (trunkVolume != 0) && (newValue < trunkVolume) {
+                let space = trunkVolume - newValue
+                print ("\(brand) trunk free: \(space)")
+            } else { print("Input error or \(brand) trunk is full.")}
+        }
+    }
+    var engine : engine {
+        willSet {
+            if newValue == .start {
+                print ("\(brand) engine is on")
+            } else {print("\(brand) engine is off")}
+        }
+    }
+    var windows : windows {
+        willSet {
+            if newValue == .open {
+                print("\(brand) windows are open")
+            } else { print("\(brand) windows are close") }
+        }
+    }
+    var trunkState : trunkState
+    mutating func emptyTrunck() {
+        self.trunkState = .empty
+        print ("\(brand) trunck is empty")
+    }
+}
+struct truck {
+    let brand: String
+    let horsepower:Int
+    var color:String
+    let transmission: String
+    let year: Int
+    mutating func changeColor(c:String) {
+        switch c {
+        case "white":
+            self.color = "white"
+        case "black":
+            self.color = "black"
+        case "red":
+            self.color = "red"
+        case "blue":
+            self.color = "blue"
+        default:
+            print("Input error.")
+        }
+    }
+    var trunkVolume : Double {
+        willSet {
+            if (trunkState == .empty) && (trunkVolume > 0) && (trunkVolume != 0) && (newValue < trunkVolume) {
+                let space = trunkVolume - newValue
+                print ("\(brand) trunk free: \(space)")
+            } else { print("Input error or \(brand) trunk is full.")}
+        }
+    }
+    var engine : engine {
+        willSet {
+            if newValue == .start {
+                print ("\(brand) engine is on")
+            } else {print("\(brand) engine is off")}
+        }
+    }
+    var windows : windows {
+        willSet {
+            if newValue == .open {
+                print("\(brand) windows are open")
+            } else { print("\(brand) windows are close") }
+        }
+    }
+    var trunkState : trunkState
+    mutating func emptyTrunck() {
+        self.trunkState = .empty
+        print ("\(brand) trunck is empty")
+    }
+}
+var nissangtr=car(brand: "nissan", horsepower: 550, color: "clear", transmission: "robot", year: 2012, trunkVolume: 550.0, engine: .start, windows: .open, trunkState: .empty)
+var mag=truck(brand: "MAG", horsepower: 380, color: "green", transmission: "mechanioca", year: 2014, trunkVolume: 400.0, engine: .stop, windows: .close, trunkState: .full)
+var toyota=car(brand: "Toyota", horsepower: 249, color: "clear", transmission: "automatic", year: 2018, trunkVolume: 80.0, engine: .start, windows: .open, trunkState: .empty)
+var UAZ=truck(brand: "UAZ", horsepower: 550, color: "yellow", transmission: "mechanica", year: 2004, trunkVolume: 80.0, engine: .stop, windows: .open, trunkState: .full)
+print ("Information about Nissan GT-R: brand: \(nissangtr.brand), color: \(String(describing: nissangtr.color)), trunkVolume: \(nissangtr.trunkVolume), engine is \(nissangtr.engine),windows are \(nissangtr.windows),transmission is \(nissangtr.transmission),the year of this car is \(nissangtr.year)")
+print ("Information about MAG: brand: \(mag.brand), color: \(String(describing: mag.color)), trunkVolume: \(mag.trunkVolume), engine is \(mag.engine),windows are \(mag.windows),transmission is \(mag.transmission),the year of this car is \(mag.year)")
+//if you want,you can easily print information abot other cars 
